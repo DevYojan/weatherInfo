@@ -1,0 +1,37 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 3px 3px 3px #ccc, -3px -3px 3px #ccc;
+  padding: 1em;
+}
+
+.container h1,
+.curTime {
+  text-align: center;
+  margin-top: 0px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.info h1 {
+  padding-left: 0.5em;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.temp {
+  border-left: 2px solid #ccc;
+  padding: 1em;
+}
