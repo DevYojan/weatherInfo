@@ -1,7 +1,10 @@
 import '../main.css';
+import loadingGif from '../images/24.gif';
 import React from 'react';
 import TodaysWeather from './TodaysWeather';
-import openweather, { API_KEY } from '../apis/openweather';
+import currentweather, { API_KEY } from '../apis/currentweather';
+import ForecastList from './ForecastList';
+import forecast from '../apis/forecast';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +24,7 @@ class App extends React.Component {
     } else {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const query = `?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=${API_KEY}`;
-        // let response = await openweather.get(query);
+        // let response = await currentweather.get(query);
         // response = response.data;
         let response = {
           "coord": {
@@ -74,6 +77,8 @@ class App extends React.Component {
           temp_max: response.main.temp_max,
           temp: response.main.temp,
           name: response.name,
+          lon: response.coord.lon,
+          lat: response.coord.lat,
         }
 
         this.setState({
@@ -84,11 +89,29 @@ class App extends React.Component {
     }
   }
 
+  async componentDidUpdate() {
+    const query = `?lat=${this.state.weatherData.lat}&lon=${this.state.weatherData.lon}&units=metric&appid=${API_KEY}`;
+    const response = await forecast.get(query);
+    console.log(response.data);
+  }
+
   render() {
+
+    if (!this.state.weatherData) {
+      return (
+      <div className="container loading">
+        <h1>Loading ...</h1>
+        <img src={loadingGif} alt="Loading..."/>
+      </div>);
+    }
+
+    console.log(this.state.weatherData);
+
     return (
       <div className="container">
         <h1 className="heading">Weather Info</h1>
         <TodaysWeather weatherData={this.state.weatherData} />
+        <ForecastList/>
       </div>
     );
   }
