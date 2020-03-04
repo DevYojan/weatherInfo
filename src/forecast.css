@@ -1,0 +1,35 @@
+.weatherCard {
+  margin-top: 2em;
+  max-width: 200px;
+  box-shadow: 3px 3px 3px #ccc, -3px -3px 3px #ccc;
+  padding: 0 1em 1em 1em;
+}
+
+.timeAndLogo{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.timeAndLogo img {
+  max-width: 65px;
+}
+
+.info {
+  /* display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  justify-items: center; */
+}
+
+.info h3 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.info .temps p {
+  margin: 0;
+  line-height: 1.3em;
+  /* border-left: 2px solid #ccc;
+  padding-left: 1em; */
+}
