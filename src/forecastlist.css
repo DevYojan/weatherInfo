@@ -1,13 +1,13 @@
 .forecastData {
   display: grid;
-  grid-template-columns: repeat(4, minmax(160px, 1fr));
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  /* justify-items: center; */
   grid-gap: 1em;
 }
 
 summary {
   background: #e6ebe7;
-  padding: .5em;
+  padding: 0.5em;
   font-weight: bold;
   font-size: 1.2em;
   margin-top: 1em;
@@ -21,14 +21,30 @@ summary:hover {
 
 @keyframes open {
   0% {
-    opacity: 50%;
+    transform: scale(0.1);
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
   }
 
   100% {
-    opacity: 100%;
+    transform: scale(1);
   }
 }
 
 details[open] .forecastData {
-  animation: open .5s ease-in-out;
+  animation: open .5s;
+  transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+@media only screen and (max-width: 600px) {
+  .forecastData {
+    grid-template-columns: repeat(8, 1fr);
+    overflow: auto;
+    white-space: nowrap;
+    padding: 0.1em 0.5em 0.1em 0.5em;
+    grid-row-gap: 0;
+  }
 }
